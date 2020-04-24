@@ -1,0 +1,29 @@
+{
+  "name": "google-photos-at-random",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/peterthehan/google-photos-at-random",
+  "bugs": {
+    "url": "https://github.com/peterthehan/google-photos-at-random/issues",
+    "email": "peter.han.9493@gmail.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Peter Han",
+    "email": "peter.han.9493@gmail.com",
+    "url": "https://github.com/peterthehan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peterthehan/google-photos-at-random.git"
+  },
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "googleapis": "^49.0.0",
+    "googlephotos": "^0.2.5",
+    "open": "^7.0.3"
+  }
+}
