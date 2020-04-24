@@ -44,4 +44,4 @@ const main = async (auth) => {
   await getRandomPhoto(photos);
 };
 
-authenticate(main);
+authenticate().then(main).catch(console.error);

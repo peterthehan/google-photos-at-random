@@ -1,38 +1,35 @@
-const path = require("path");
 const express = require("express");
 const { google } = require("googleapis");
 const Photos = require("googlephotos");
 const opn = require("open");
+const {
+  web: { client_id, client_secret, redirect_uri },
+} = require("../oauth2.keys");
 
-module.exports = (callback) => {
-  const keyfile = path.join(__dirname, "../oauth2.keys.json");
-  const { client_id, client_secret, redirect_uri } = require(keyfile).web;
+module.exports = async () => {
   const client = new google.auth.OAuth2(client_id, client_secret, redirect_uri);
-
   const scopes = [Photos.Scopes.READ_ONLY];
-  this.authorizeUrl = client.generateAuthUrl({
-    access_type: "offline",
-    scope: scopes,
-  });
+  const authorizeUrl = client.generateAuthUrl({ scope: scopes });
 
   const app = express();
+  const server = app.listen(3000, () => opn(authorizeUrl));
 
-  const server = app.listen(3000, () =>
-    opn(this.authorizeUrl, { wait: false })
-  );
+  return new Promise((resolve, reject) => {
+    app.get("/oauth2callback", (req, res) => {
+      client.getToken(req.query.code, (error, tokens) => {
+        let message;
+        if (error) {
+          message = `Error getting OAuth tokens: ${error}`;
+          reject(message);
+        } else {
+          message = "Authentication successful! Please return to the console.";
+          client.credentials = tokens;
+          resolve(client);
+        }
 
-  app.get("/oauth2callback", (req, res) => {
-    client.getToken(req.query.code, (err, tokens) => {
-      if (err) {
-        console.error("Error getting OAuth tokens:");
-        throw err;
-      }
-
-      client.credentials = tokens;
-      res.send("Authentication successful! Please return to the console.");
-      server.close();
-
-      callback(client);
+        res.send(message);
+        server.close();
+      });
     });
   });
 };
