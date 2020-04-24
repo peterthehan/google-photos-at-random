@@ -2,12 +2,10 @@ const express = require("express");
 const { google } = require("googleapis");
 const Photos = require("googlephotos");
 const opn = require("open");
-const {
-  web: { client_id, client_secret, redirect_uri },
-} = require("../oauth2.keys");
+const { clientId, clientSecret, redirectUri } = require("../config");
 
 module.exports = async () => {
-  const client = new google.auth.OAuth2(client_id, client_secret, redirect_uri);
+  const client = new google.auth.OAuth2(clientId, clientSecret, redirectUri);
   const scopes = [Photos.Scopes.READ_ONLY];
   const authorizeUrl = client.generateAuthUrl({ scope: scopes });
 
