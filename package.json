@@ -24,6 +24,6 @@
     "express": "^4.17.1",
     "googleapis": "^49.0.0",
     "googlephotos": "^0.2.5",
-    "open": "^7.0.3"
+    "open": "^7.0.4"
   }
 }

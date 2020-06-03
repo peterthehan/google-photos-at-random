@@ -1,3 +1,4 @@
+const open = require("open");
 const getRandomInt = require("./getRandomInt");
 const sleep = require("./sleep");
 
@@ -14,4 +15,5 @@ module.exports = async (photos, count) => {
   }
 
   console.log(randomPhotos);
+  randomPhotos.forEach((photo) => open(photo.productUrl));
 };
