@@ -26,6 +26,7 @@
     "check": "prettier --no-config --check .",
     "choose": "node ./index.js --choose",
     "format": "prettier --no-config --write .",
+    "list": "node ./index.js --list",
     "load": "node ./index.js --load"
   },
   "dependencies": {

@@ -1,5 +1,4 @@
 {
-  "albumId": "GOOGLE_PHOTOS_ALBUM_ID_PLACEHOLDER",
   "clientId": "CLIENT_ID_PLACEHOLDER",
   "clientSecret": "CLIENT_SECRET_PLACEHOLDER",
   "redirectUri": "http://localhost:3000/oauth2callback"

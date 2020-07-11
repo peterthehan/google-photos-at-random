@@ -1,9 +1,10 @@
 const open = require("open");
-const getRandomInt = require("./getRandomInt");
-const sleep = require("./sleep");
+const getRandomInt = require("../util/getRandomInt");
+const sleep = require("../util/sleep");
 
-module.exports = async (photos, count) => {
-  const photoIds = require("../photo-ids");
+module.exports = async (photos, path, count) => {
+  console.log(path);
+  const photoIds = require(`../${path}`);
   const randomPhotos = [];
   for (let i = 0; i < count; ++i) {
     const randomIndex = getRandomInt(0, photoIds.length);
