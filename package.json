@@ -26,8 +26,7 @@
     "check": "prettier --no-config --check .",
     "choose": "node ./index.js --choose",
     "format": "prettier --no-config --write .",
-    "load": "node ./index.js --load",
-    "start": "node ./index.js"
+    "load": "node ./index.js --load"
   },
   "dependencies": {
     "express": "^4.17.1",
