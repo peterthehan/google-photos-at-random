@@ -1,7 +1,7 @@
 const Photos = require("googlephotos");
 const authenticate = require("./util/authenticate");
-const getAllPhotoIds = require("./util/getAllPhotoIds");
-const getRandomPhotos = require("./util/getRandomPhotos");
+const loadPhotoIds = require("./util/loadPhotoIds");
+const chooseRandomPhotos = require("./util/chooseRandomPhotos");
 const { albumId } = require("./config");
 
 const main = async (auth) => {
@@ -10,9 +10,9 @@ const main = async (auth) => {
   const [, , ...args] = process.argv;
   switch (args[0]) {
     case "--load":
-      return await getAllPhotoIds(photos, albumId);
+      return await loadPhotoIds(photos, albumId);
     case "--choose":
-      return await getRandomPhotos(photos, 10);
+      return await chooseRandomPhotos(photos, 10);
   }
 };
 
