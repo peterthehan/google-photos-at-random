@@ -1,11 +1,18 @@
 {
   "name": "google-photos-at-random",
   "version": "1.0.0",
-  "description": "",
+  "description": "Load photos at random from a Google Photos album.",
+  "keywords": [
+    "google-photos"
+  ],
   "homepage": "https://github.com/peterthehan/google-photos-at-random",
   "bugs": {
     "url": "https://github.com/peterthehan/google-photos-at-random/issues",
     "email": "peter.han.9493@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peterthehan/google-photos-at-random.git"
   },
   "license": "MIT",
   "author": {
@@ -13,11 +20,13 @@
     "email": "peter.han.9493@gmail.com",
     "url": "https://github.com/peterthehan"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/peterthehan/google-photos-at-random.git"
-  },
+  "main": "index.js",
+  "bin": "index.js",
   "scripts": {
+    "check": "prettier --no-config --check .",
+    "choose": "node ./index.js --choose",
+    "format": "prettier --no-config --write .",
+    "load": "node ./index.js --load",
     "start": "node ./index.js"
   },
   "dependencies": {
@@ -25,5 +34,8 @@
     "googleapis": "^49.0.0",
     "googlephotos": "^0.2.5",
     "open": "^7.0.4"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }
