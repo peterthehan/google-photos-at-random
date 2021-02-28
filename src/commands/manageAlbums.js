@@ -69,6 +69,7 @@ const removeAlbumsToTrack = async () => {
 };
 
 module.exports = async (photos) => {
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     const empty = isEmpty();
 

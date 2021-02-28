@@ -11,7 +11,7 @@ module.exports = () => {
 
   try {
     return JSON.parse(fs.readFileSync(file));
-  } catch {
+  } catch (error) {
     fs.writeFileSync(file, "{}");
     return {};
   }

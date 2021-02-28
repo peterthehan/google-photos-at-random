@@ -12,6 +12,7 @@ const isEmpty = require("./util/isEmpty");
 const main = async (auth) => {
   const photos = new Photos(auth.credentials.access_token);
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     const empty = isEmpty();
 
