@@ -1,6 +1,6 @@
 const sleep = require("./sleep");
 
-module.exports = async (callback, delay = 1500) => {
+module.exports = async (callback, delay = 1000) => {
   const collection = [];
   let nextPageToken = null;
 
