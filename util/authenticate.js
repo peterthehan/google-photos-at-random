@@ -1,7 +1,7 @@
 const express = require("express");
 const { google } = require("googleapis");
 const Photos = require("googlephotos");
-const opn = require("open");
+const open = require("open");
 const { clientId, clientSecret, redirectUri } = require("../config");
 
 module.exports = async () => {
@@ -10,7 +10,7 @@ module.exports = async () => {
   const authorizeUrl = client.generateAuthUrl({ scope: scopes });
 
   const app = express();
-  const server = app.listen(3000, () => opn(authorizeUrl));
+  const server = app.listen(3000, () => open(authorizeUrl));
 
   return new Promise((resolve, reject) => {
     app.get("/oauth2callback", (req, res) => {
