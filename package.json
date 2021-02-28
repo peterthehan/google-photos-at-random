@@ -31,11 +31,12 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "googleapis": "^49.0.0",
-    "googlephotos": "^0.2.5",
-    "open": "^7.0.4"
+    "googleapis": "^67.1.0",
+    "googlephotos": "^0.3.4",
+    "open": "^7.4.2",
+    "prompts": "^2.4.0"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "^2.2.1"
   }
 }
