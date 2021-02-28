@@ -11,11 +11,11 @@ module.exports = async (callback) => {
     collection.push(...response.batch);
     nextPageToken = response.nextPageToken;
 
-    console.log(`Batch ${++index}: ${response.batch.length} item(s) found`);
+    // console.log(`Batch ${++index}: ${response.batch.length} item(s) found`);
     await sleep(1500);
   } while (nextPageToken);
 
-  console.log(`Total: ${collection.length} item(s) found`);
+  // console.log(`Total: ${collection.length} item(s) found`);
 
   return collection;
 };

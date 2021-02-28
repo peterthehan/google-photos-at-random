@@ -23,16 +23,13 @@
   "main": "index.js",
   "bin": "index.js",
   "scripts": {
-    "check": "prettier --no-config --check .",
-    "choose": "node ./index.js --choose",
     "format": "prettier --no-config --write .",
-    "list": "node ./index.js --list",
-    "load": "node ./index.js --load"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
     "googleapis": "^67.1.0",
-    "googlephotos": "^0.3.4",
+    "googlephotos": "^0.2.5",
     "open": "^7.4.2",
     "prompts": "^2.4.0"
   },
