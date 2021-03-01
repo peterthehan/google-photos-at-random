@@ -25,10 +25,11 @@ module.exports = async (photos) => {
     name: "values",
     message: `Select from ${albums.length} album(s) to add to track`,
     choices: albums.map((album) => ({
-      title: album in track ? `${album.title} - Already tracked` : album.title,
+      title:
+        album.id in track ? `${album.title} - Already tracked` : album.title,
       description: `${album.mediaItemsCount} photo(s)`,
       value: { id: album.id, title: album.title, productUrl: album.productUrl },
-      disabled: album in track,
+      disabled: album.id in track,
     })),
   });
 

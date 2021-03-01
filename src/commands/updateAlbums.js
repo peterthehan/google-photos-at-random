@@ -3,20 +3,23 @@ const path = require("path");
 const prompts = require("prompts");
 
 const batchLoader = require("../util/batchLoader");
-const get = require("../util/get");
+const getCachedAlbums = require("../util/getCachedAlbums");
 
 const MAX_MEDIAITEMS_PAGE_SIZE = 100;
 
 module.exports = async (photos) => {
-  const track = get();
-  const albums = Object.values(track);
+  const albums = getCachedAlbums();
 
   const { value } = await prompts({
     type: "select",
     name: "value",
     message: `Select tracked album to update`,
     choices: [
-      ...albums.map((album) => ({ title: album.title, value: album.id })),
+      ...albums.map((album) => ({
+        title: album.title,
+        description: `${album.cachedPhotosCount} cached photo(s)`,
+        value: album.id,
+      })),
       { title: "Return to main menu", value: "return" },
     ],
   });

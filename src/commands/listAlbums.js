@@ -1,10 +1,16 @@
-const get = require("../util/get");
+const getCachedAlbums = require("../util/getCachedAlbums");
 
 module.exports = async () => {
-  const track = get();
-  const albums = Object.values(track);
+  const albums = getCachedAlbums();
 
   console.log(
-    albums.map((album) => `${album.title} - ${album.productUrl}`).join("\n")
+    albums
+      .map(
+        (album, index) =>
+          `${index + 1}. ${album.title} - ${
+            album.cachedPhotosCount
+          } cached photo(s)\n${album.productUrl}`
+      )
+      .join("\n")
   );
 };

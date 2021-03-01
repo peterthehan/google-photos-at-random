@@ -2,19 +2,26 @@ const open = require("open");
 const prompts = require("prompts");
 
 const getRandomInt = require("../util/getRandomInt");
-const get = require("../util/get");
+const getCachedAlbums = require("../util/getCachedAlbums");
 const sleep = require("../util/sleep");
 
 module.exports = async (photos) => {
-  const track = get();
-  const albums = Object.values(track);
+  const albums = getCachedAlbums();
 
   const album = await prompts({
     type: "select",
     name: "value",
     message: `Select tracked album to choose photos from`,
     choices: [
-      ...albums.map((album) => ({ title: album.title, value: album.id })),
+      ...albums.map((album) => ({
+        title:
+          album.cachedPhotosCount === 0
+            ? `${album.title} - No cached photos`
+            : album.title,
+        description: `${album.cachedPhotosCount} cached photo(s)`,
+        value: album.id,
+        disabled: album.cachedPhotosCount === 0,
+      })),
       { title: "Return to main menu", value: "return" },
     ],
   });
