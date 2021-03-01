@@ -19,10 +19,10 @@ Load photos at random from a Google Photos album.
 ```
 git clone https://github.com/peterthehan/google-photos-at-random.git
 cd google-photos-at-random
-npm install
+npm i
 ```
 
-2. Find and rename [example.config.json](https://github.com/peterthehan/google-photos-at-random/blob/master/example.config.json) to `config.json`. Open the file and enter your `Client ID` and `Client secret` from the previous section:
+2. Find and rename [example.config.json](https://github.com/peterthehan/google-photos-at-random/blob/master/src/example.config.json) to `config.json`. Open the file and enter your `Client ID` and `Client secret` from the previous section:
 
 ```
 {
@@ -32,23 +32,9 @@ npm install
 }
 ```
 
-3. Verify the setup by running `npm run list`.
+3. Run `npm start`.
 
-> You will need to authenticate with your Google account for every command.
-
-## Usage
-
-`npm run list`
-
-Outputs a list of all your Google Photos albums. Use the `album id` listed here for the `npm run load` command.
-
-`npm run load <album id>`
-
-Writes a JSON file containing all photo ids for the given `album id`.
-
-`npm run choose <file>`
-
-Outputs a list of 10 randomly chosen photos for the given `file`. It also opens the 10 photos as tabs in your browser.
+> You will need to authenticate with your Google account on start.
 
 ## Troubleshooting
 

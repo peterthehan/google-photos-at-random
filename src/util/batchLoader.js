@@ -1,6 +1,6 @@
 const sleep = require("./sleep");
 
-module.exports = async (callback) => {
+module.exports = async (callback, delay = 1000) => {
   const collection = [];
   let index = 0;
   let nextPageToken = null;
@@ -12,7 +12,7 @@ module.exports = async (callback) => {
     nextPageToken = response.nextPageToken;
 
     console.log(`Batch ${++index}: ${response.batch.length} item(s) found`);
-    await sleep(1500);
+    await sleep(delay);
   } while (nextPageToken);
 
   console.log(`Total: ${collection.length} item(s) found`);

@@ -12,30 +12,50 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/peterthehan/google-photos-at-random.git"
+    "url": "https://github.com/peterthehan/google-photos-at-random"
   },
+  "funding": [
+    {
+      "type": "GitHub",
+      "url": "https://github.com/sponsors/peterthehan"
+    },
+    {
+      "type": "Patreon",
+      "url": "https://www.patreon.com/peterthehan"
+    },
+    {
+      "type": "PayPal",
+      "url": "https://paypal.me/peterthehan"
+    },
+    {
+      "type": "Ko-fi",
+      "url": "https://ko-fi.com/peterthehan"
+    },
+    {
+      "type": "Venmo",
+      "url": "https://venmo.com/peterthehan"
+    }
+  ],
   "license": "MIT",
   "author": {
     "name": "Peter Han",
     "email": "peter.han.9493@gmail.com",
     "url": "https://github.com/peterthehan"
   },
-  "main": "index.js",
-  "bin": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "check": "prettier --no-config --check .",
-    "choose": "node ./index.js --choose",
-    "format": "prettier --no-config --write .",
-    "list": "node ./index.js --list",
-    "load": "node ./index.js --load"
+    "format": "npx eslint --fix . && prettier --no-config --write .",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "googleapis": "^49.0.0",
+    "googleapis": "^67.1.0",
     "googlephotos": "^0.2.5",
-    "open": "^7.0.4"
+    "open": "^7.4.2",
+    "prompts": "^2.4.0"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "eslint": "^7.21.0",
+    "prettier": "^2.2.1"
   }
 }
