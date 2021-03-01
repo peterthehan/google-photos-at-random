@@ -1,4 +1,4 @@
-src/albums/*
 !src/albums/.gitkeep
 node_modules
+src/albums/*
 src/config.json
