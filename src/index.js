@@ -31,7 +31,7 @@ const main = async (auth) => {
 
     const isEmpty = Object.keys(get()).length === 0;
     if (isEmpty && ["list", "remove", "update", "choose"].includes(value)) {
-      console.log(`Nothing to ${value}, please add albums to track first!`);
+      console.log(`Nothing to ${value}! Add albums to track first.`);
       continue;
     }
 

@@ -48,7 +48,5 @@ module.exports = async (photos) => {
   );
 
   randomPhotos.forEach((photo) => open(photo.productUrl));
-  console.log(
-    randomPhotos.map((photo) => `    ${photo.productUrl}`).join("\n")
-  );
+  console.log(randomPhotos.map((photo) => photo.productUrl).join("\n"));
 };

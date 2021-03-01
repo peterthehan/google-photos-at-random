@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const prompts = require("prompts");
 
 const batchLoader = require("../util/batchLoader");
@@ -39,7 +40,7 @@ module.exports = async (photos) => {
 
   const photoIds = await batchLoader(callback);
 
-  const path = `./albums/${value}.json`;
-  fs.writeFileSync(path, JSON.stringify(photoIds, null, 2));
-  console.log(`    File written to: ${path}`);
+  const file = path.resolve(__dirname, `../albums/${value}.json`);
+  fs.writeFileSync(file, JSON.stringify(photoIds, null, 2));
+  console.log(`File written to: ${file}`);
 };

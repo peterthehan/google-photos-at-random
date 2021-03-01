@@ -5,6 +5,6 @@ module.exports = async () => {
   const albums = Object.values(track);
 
   console.log(
-    albums.map((album) => `    ${album.title} - ${album.productUrl}`).join("\n")
+    albums.map((album) => `${album.title} - ${album.productUrl}`).join("\n")
   );
 };
