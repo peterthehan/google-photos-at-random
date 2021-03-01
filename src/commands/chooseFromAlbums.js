@@ -6,19 +6,16 @@ const get = require("../util/get");
 const sleep = require("../util/sleep");
 
 module.exports = async (photos) => {
-  const data = get();
-  const albums = Object.values(data);
+  const track = get();
+  const albums = Object.values(track);
 
   const album = await prompts({
     type: "select",
     name: "value",
-    message: `Select album to choose from`,
+    message: `Select tracked album to choose photos from`,
     choices: [
-      ...albums.map((album) => ({
-        title: album.title,
-        value: `${album.title.split(" ").join("_")}_${album.id}`,
-      })),
-      { title: "Return to previous menu", value: "return" },
+      ...albums.map((album) => ({ title: album.title, value: album.id })),
+      { title: "Return to main menu", value: "return" },
     ],
   });
 
@@ -29,7 +26,7 @@ module.exports = async (photos) => {
   const number = await prompts({
     type: "number",
     name: "value",
-    message: "Number to choose",
+    message: "Number of photos to choose",
     initial: 10,
     min: 0,
     max: 15,
@@ -44,14 +41,14 @@ module.exports = async (photos) => {
     [...Array(number.value).keys()].map(async () => {
       const photoId = photoIds[getRandomInt(0, photoIds.length)];
       const photo = await photos.mediaItems.get(photoId);
-      await sleep(1500);
+      await sleep(1000);
 
       return photo;
     })
   );
 
+  randomPhotos.forEach((photo) => open(photo.productUrl));
   console.log(
     randomPhotos.map((photo) => `    ${photo.productUrl}`).join("\n")
   );
-  randomPhotos.forEach((photo) => open(photo.productUrl));
 };

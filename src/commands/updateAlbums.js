@@ -7,19 +7,16 @@ const get = require("../util/get");
 const MAX_MEDIAITEMS_PAGE_SIZE = 100;
 
 module.exports = async (photos) => {
-  const data = get();
-  const albums = Object.values(data);
+  const track = get();
+  const albums = Object.values(track);
 
   const { value } = await prompts({
     type: "select",
     name: "value",
-    message: `Select album to update`,
+    message: `Select tracked album to update`,
     choices: [
-      ...albums.map((album) => ({
-        title: album.title,
-        value: album.id,
-      })),
-      { title: "Return to previous menu", value: "return" },
+      ...albums.map((album) => ({ title: album.title, value: album.id })),
+      { title: "Return to main menu", value: "return" },
     ],
   });
 
@@ -42,8 +39,7 @@ module.exports = async (photos) => {
 
   const photoIds = await batchLoader(callback);
 
-  const album = await photos.albums.get(value);
-  const path = `./albums/${album.title.split(" ").join("_")}_${album.id}.json`;
+  const path = `./albums/${value}.json`;
   fs.writeFileSync(path, JSON.stringify(photoIds, null, 2));
   console.log(`    File written to: ${path}`);
 };

@@ -1,9 +1,10 @@
 const get = require("../util/get");
 
 module.exports = async () => {
+  const track = get();
+  const albums = Object.values(track);
+
   console.log(
-    Object.values(get())
-      .map((album) => `    ${album.title} - ${album.productUrl}`)
-      .join("\n")
+    albums.map((album) => `    ${album.title} - ${album.productUrl}`).join("\n")
   );
 };

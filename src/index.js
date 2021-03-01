@@ -2,57 +2,48 @@ const Photos = require("googlephotos");
 const prompts = require("prompts");
 
 const listAlbums = require("./commands/listAlbums");
-const manageAlbums = require("./commands/manageAlbums");
+const addAlbums = require("./commands/addAlbums");
+const removeAlbums = require("./commands/removeAlbums");
 const updateAlbums = require("./commands/updateAlbums");
 const chooseFromAlbums = require("./commands/chooseFromAlbums");
 
 const authenticate = require("./util/authenticate");
-const isEmpty = require("./util/isEmpty");
+const get = require("./util/get");
 
 const main = async (auth) => {
   const photos = new Photos(auth.credentials.access_token);
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const empty = isEmpty();
-
     const { value } = await prompts({
       type: "select",
       name: "value",
       message: "Main menu",
       choices: [
-        {
-          title: empty
-            ? "List tracked albums - Nothing to list!"
-            : "List tracked albums",
-          value: "list",
-          disabled: empty,
-        },
-        { title: "Manage tracked albums", value: "manage" },
-        {
-          title: empty
-            ? "Update tracked albums - Nothing to update!"
-            : "Update tracked albums",
-          value: "update",
-          disabled: empty,
-        },
-        {
-          title: empty
-            ? "Choose from tracked albums - Nothing to choose!"
-            : "Choose from tracked albums",
-          value: "choose",
-          disabled: empty,
-        },
+        { title: "List tracked albums", value: "list" },
+        { title: "Add albums to track", value: "add" },
+        { title: "Remove albums from track", value: "remove" },
+        { title: "Update tracked albums", value: "update" },
+        { title: "Choose photos from tracked albums", value: "choose" },
         { title: "Exit", value: "return" },
       ],
     });
+
+    const isEmpty = Object.keys(get()).length === 0;
+    if (isEmpty && ["list", "remove", "update", "choose"].includes(value)) {
+      console.log(`Nothing to ${value}, please add albums to track first!`);
+      continue;
+    }
 
     switch (value) {
       case "list":
         await listAlbums();
         break;
-      case "manage":
-        await manageAlbums(photos);
+      case "add":
+        await addAlbums(photos);
+        break;
+      case "remove":
+        await removeAlbums();
         break;
       case "update":
         await updateAlbums(photos);
