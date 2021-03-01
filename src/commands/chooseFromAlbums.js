@@ -2,11 +2,11 @@ const open = require("open");
 const prompts = require("prompts");
 
 const getRandomInt = require("../util/getRandomInt");
-const read = require("../util/read");
+const get = require("../util/get");
 const sleep = require("../util/sleep");
 
 module.exports = async (photos) => {
-  const data = read();
+  const data = get();
   const albums = Object.values(data);
 
   const album = await prompts({

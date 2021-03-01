@@ -1,2 +1,3 @@
-module.exports = async (duration) =>
-  new Promise((resolve) => setTimeout(resolve, duration));
+module.exports = async (delay) => {
+  return new Promise((resolve) => setTimeout(resolve, delay));
+};

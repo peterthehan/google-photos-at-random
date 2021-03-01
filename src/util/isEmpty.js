@@ -1,5 +1,5 @@
-const read = require("./read");
+const get = require("./get");
 
 module.exports = () => {
-  return Object.keys(read()).length === 0;
+  return Object.keys(get()).length === 0;
 };

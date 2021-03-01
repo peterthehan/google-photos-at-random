@@ -2,12 +2,12 @@ const fs = require("fs");
 const prompts = require("prompts");
 
 const batchLoader = require("../util/batchLoader");
-const read = require("../util/read");
+const get = require("../util/get");
 
 const MAX_MEDIAITEMS_PAGE_SIZE = 100;
 
 module.exports = async (photos) => {
-  const data = read();
+  const data = get();
   const albums = Object.values(data);
 
   const { value } = await prompts({

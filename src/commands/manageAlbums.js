@@ -2,8 +2,8 @@ const prompts = require("prompts");
 
 const batchLoader = require("../util/batchLoader");
 const isEmpty = require("../util/isEmpty");
-const read = require("../util/read");
-const write = require("../util/write");
+const get = require("../util/get");
+const put = require("../util/put");
 
 const MAX_ALBUMS_PAGE_SIZE = 50;
 
@@ -45,12 +45,12 @@ const addAlbumsToTrack = async (photos) => {
     {}
   );
 
-  const data = read();
-  write({ ...data, ...albumsToAdd });
+  const data = get();
+  put({ ...data, ...albumsToAdd });
 };
 
 const removeAlbumsToTrack = async () => {
-  const data = read();
+  const data = get();
   const albums = Object.values(data);
 
   const { values } = await prompts({
@@ -65,7 +65,7 @@ const removeAlbumsToTrack = async () => {
 
   values.forEach((value) => delete data[value]);
 
-  write(data);
+  put(data);
 };
 
 module.exports = async (photos) => {
