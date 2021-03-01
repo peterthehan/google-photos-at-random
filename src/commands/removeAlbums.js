@@ -1,11 +1,10 @@
 const prompts = require("prompts");
 
-const get = require("../util/get");
+const getCachedAlbums = require("../util/getCachedAlbums");
 const put = require("../util/put");
 
 module.exports = async () => {
-  const track = get();
-  const albums = Object.values(track);
+  const albums = getCachedAlbums();
 
   const { values } = await prompts({
     type: "multiselect",
@@ -13,6 +12,7 @@ module.exports = async () => {
     message: `Select from ${albums.length} album(s) to remove from track`,
     choices: albums.map((album) => ({
       title: album.title,
+      description: `${album.cachedPhotosCount} cached photo(s)`,
       value: album.id,
     })),
   });
@@ -20,6 +20,18 @@ module.exports = async () => {
   if (values.length === 0) {
     return;
   }
+
+  const track = albums.reduce(
+    (obj, album) => ({
+      ...obj,
+      [album.id]: {
+        id: album.id,
+        title: album.title,
+        productUrl: album.productUrl,
+      },
+    }),
+    {}
+  );
 
   values.forEach((value) => delete track[value]);
 
